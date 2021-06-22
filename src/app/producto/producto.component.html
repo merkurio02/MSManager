@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row">
+        <div class="col-7 row g-0">
+            <div class="col-4 p-1" *ngFor="let i of ingredientes">
+                <div class="card">
+                    <div class="card-header">
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> </li>
+                        <li class="list-group-item"></li>
+
+                        <li class="list-group-item"><button class="badge btn btn-danger" title="Modificar."><i
+                                    class="fas fa-pen"></i></button></li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-5 g-0 border rounded mt-1 p-2">
+            <form [formGroup]="formulario">
+                <h5>PRODUCTO</h5>
+                <div class="mb-3">
+
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" formControlName="nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="codigo" class="form-label">Codigo</label>
+                    <input type="text" class="form-control" id="codigo" formControlName="codigo">
+                </div>
+
+                <div class="mb-3">
+                    <label for="ingredientes" class="form-label">
+                        Ingredientes iniciales
+
+                    </label>
+                    <button class="btn btn-primary badge form-control" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseIngredientes" aria-expanded="false"
+                        aria-controls="collapseIngredientes">
+                        <i class="fas fa-arrows-alt-v"></i>
+                    </button>
+
+
+
+                    <div class="border px-3 collapse" id="collapseIngredientes">
+                        <div class="row ">
+                            <div class="col-3 g-0 " *ngFor="let ingrediente of ingredientes">
+
+                                <input type="checkbox" class="btn-check"
+                                 (change)="onCheckChange($event)" 
+                                 [id]="ingrediente.codigo"
+                                 [value]="ingrediente.codigo"
+                                 autocomplete="off">
+                                <label class="btn btn-outline-primary w-100"
+                                    [for]="ingrediente.codigo">{{ingrediente.nombre}}</label><br>
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="editable" formControlName="editable">
+                        <label class="form-check-label" for="editable">Ingredientable</label>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+
+                    <label for="valor" class="form-label">Valor</label>
+                    <input type="number" class="form-control" id="valor" formControlName="valor">
+                </div>
+                <button type="button" [disabled]="formulario.invalid" *ngIf="!updating" (click)="guardar()"
+                    class="btn btn-primary">Guardar</button>
+
+                <button type="button" [disabled]="formulario.invalid" *ngIf="updating" (click)="update()"
+                    class="btn btn-warning">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
