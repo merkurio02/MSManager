@@ -15,10 +15,14 @@ export class ProductoComponent implements OnInit {
   formulario: FormGroup;
   ingredientes: Ingrediente[];
   updating=false;
+  productos:Producto[];
 
   constructor(private fb: FormBuilder, private iservice: IngredientesService, private pService:ProductosService) { }
 
   ngOnInit(): void {
+    this.getProductos();
+    this.getIngredientes();
+
     this.formulario = this.fb.group({
       nombre: ['', Validators.required],
       codigo: ['', Validators.required],
@@ -28,22 +32,23 @@ export class ProductoComponent implements OnInit {
     });
     
 
-    this.obtenerIngredientes();
+   
+
   }
 
+  getProductos(){
+    this.productos=this.pService.getAll();
+  }
 
-  obtenerIngredientes() {
+  getIngredientes() {
     this.ingredientes = this.iservice.getAll();
   }
 
   guardar() {
     let producto:Producto=this.formulario.value as Producto;
 
-    console.log(producto);
-
-
-
-
+    this.pService.save(producto);
+    this.formulario.reset();
   }
 
   update(){

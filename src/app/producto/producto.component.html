@@ -1,13 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="col-7 row g-0">
-            <div class="col-4 p-1" *ngFor="let i of ingredientes">
+            <div class="col-6 col-lg-4  p-1" *ngFor="let p of productos">
                 <div class="card">
                     <div class="card-header">
+                        {{p.nombre}}
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"> </li>
-                        <li class="list-group-item"></li>
+                        
+                        <li class="list-group-item">Codigo: {{p.codigo}}</li>
+                        <li class="list-group-item">Valor: {{p.valor}}</li>
+                        <li class="list-group-item">editable:{{p.editable}} </li>
+                        
+                        <li class="list-group-item">ingredientes: <span *ngFor="let i of p.ingredientes"> {{i}}</span></li>
 
                         <li class="list-group-item"><button class="badge btn btn-danger" title="Modificar."><i
                                     class="fas fa-pen"></i></button></li>

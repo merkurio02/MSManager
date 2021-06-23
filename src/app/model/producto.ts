@@ -5,6 +5,7 @@ export class Producto{
     modificable:boolean;
     valor:number;
 
+    iddb:string;
 
     constructor(){
         this.nombre="";
