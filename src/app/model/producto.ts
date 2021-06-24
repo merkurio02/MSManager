@@ -2,7 +2,7 @@ export class Producto{
     nombre:string;
     codigo:string;
     ingredientes:string[];
-    modificable:boolean;
+    editable:boolean;
     valor:number;
 
     iddb:string;
@@ -11,7 +11,7 @@ export class Producto{
         this.nombre="";
         this.codigo="";
         this.ingredientes=[];
-        this.modificable=false;
+        this.editable=false;
         this.valor=0;
 
         
